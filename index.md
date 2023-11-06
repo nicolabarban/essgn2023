@@ -17,7 +17,7 @@ ESSGN
  ├── ESSGN
  │   ├── Data
  │   ├── Software
- │   ├── Script
+ │   ├── Results
  ...
 ```
  
@@ -26,14 +26,13 @@ mkdir ESSGN
 cd ESSGN
 mkdir Data
 mkdir Software
-mkdir Script
-
+mkdir Results
 ```
  
 ### Let's move into the Software directory 
  
 ```
-cd $HOME
+cd $HOME/cloudshell_open
 cd ESSGN/Software
 ```
 
@@ -79,7 +78,7 @@ Symbolic links are often used in Unix-based operating systems, such as Linux or 
 
 
 ```
-cd $HOME/ESSGN
+cd $HOME/cloudshell_open/ESSGN
 ln -s Software/plink
 ```
 
@@ -95,6 +94,9 @@ pwd
 
 ```
 cd Data/
+
+wget https://www.dropbox.com/s/apaal9fjpa01inc/week2.zip
+
 unzip week2.zip
  mv week2/*.* ./
 
@@ -102,7 +104,7 @@ unzip week2.zip
   rm -r __MACOSX/
   rm -r week2
 
-cd $HOME/ESSGN
+cd ..
 ```
 
 ## How to read PLINK files
@@ -126,7 +128,7 @@ head Data/hapmap-ceu.fam
 
 2. `.bed` files are not readable!
 ```
-head Data/hapmap-ceu.bed
+more Data/hapmap-ceu.bed
 ```
 ### Recode PLINK file
 
@@ -144,7 +146,7 @@ head Results/hapmap-ceu.map
 
 2. `.ped` file  contains info on the individual genotypes
 ```
-head -1 Results/hapmap-ceu.ped
+more -1 Results/hapmap-ceu.ped
 ```
 
 
@@ -186,17 +188,6 @@ In this way we select only a specific marker, in this case SNP `rs9930506`
 
 ```
 
-### Merge genetic files
-
-We can merge different files (different set of individuals, in this case)
-```
-
-
-./plink --bfile Data/HapMap_founders \
-   	   	--bmerge  HapMap_nonfounders \
-		--make-bed --out Results/merged_file
-```
-
 ### Add a phenotype into PLINK files
 
 PLINK file can also store info on a phenotype
@@ -229,7 +220,7 @@ This is how we add a phenotipic information to a plink file
 ```
 
 ```
- head Data/1kg_EU_BMI.fam
+ head Results/1kg_EU_BMI.fam
 ```
 ## Descriptive Statistics
 
@@ -258,57 +249,13 @@ variants
 head Data/missing_data.imiss
 ```
 
-Filter females
-```
-
-./plink     --bfile Data/hapmap-ceu \
-            --filter-females \
-            --make-bed \
-            --out Results/hapmap_filter_females
-
-```
 
 
-
-### Allele frequency
-
-
-
-Allele frequency
-```
- ./plink --bfile Data/hapmap-ceu  --freq --out Results/Allele_Frequency
-```
-
-```
-head Results/Allele_Frequency.frq 
-```
-
-### Missing values
-
-individuals
-```
-./plink --bfile Data/hapmap-ceu --missing --out Results/missing_data
-```
-variants
-```
-
-head Data/missing_data.imiss
-```
-
-Filter females
-```
-
-./plink     --bfile Data/hapmap-ceu \
-            --filter-females \
-            --make-bed \
-       	 	--out Results/hapmap_filter_females
-
-```
 ## Quality control
 ```
 
 
-./plink --bfile Data/1kg_EU_BMI \
+./plink --bfile Data/1kg_hm3 \
 		--mind 0.05 \
 		--make-bed \
 		--out Results/1kg_hm3_mind005
@@ -317,22 +264,16 @@ Filter females
 Calculate heterozygocity
 ```
 
-./plink --bfile Data/1kg_EU_BMI \
+./plink --bfile Data/1kg_hm3 \
 		--het --out Results/1kg_hm3_het
 ```
 
-Check discordant sex
-```
 
-./plink --bfile Data/hapmap-ceu \
-		--check-sex \
-		--out Results/hapmap_sexcheck 
-```
 
 Low call-rate SNPS
 ```
 
-./plink --bfile Data/1kg_EU_BMI \
+./plink --bfile Data/1kg_hm3 \
 		--geno 0.05 \
 		--make-bed \
 		--out Results/1kg_hm3_geno
@@ -341,14 +282,14 @@ Low call-rate SNPS
 Allele frequency
 ```
 
-./plink --bfile Data/1kg_EU_BMI \
+./plink --bfile Data/1kg_hm3 \
 	 	--maf 0.01 \
 		--make-bed  --out Results/1kg_hm3_maf
 ```
 deviation from HWE
 ```
 
-./plink --bfile Data/1kg_EU_BMI \
+./plink --bfile Data/1kg_hm3 \
 	 	--hwe 0.00001 \
 		--make-bed  --out Results/1kg_hm3_hwe
 
@@ -358,7 +299,7 @@ deviation from HWE
 ```
 
 
-./plink     --bfile Data/1kg_EU_BMI \
+./plink     --bfile Data/1kg_hm3 \
        	--mind 0.03 \
        	--geno 0.05 \
        	--maf 0.01 \
