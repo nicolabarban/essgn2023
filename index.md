@@ -1,4 +1,4 @@
-# ESSGN meeting.  Getting started with Plink
+#   Getting started with Plink
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/nicolabarban/essgn2023&cloudshell_tutorial=index.md)
 
