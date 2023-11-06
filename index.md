@@ -18,7 +18,7 @@ ESSGN
  │   ├── Data
  │   ├── Software
  │   ├── Script
- └── 
+ ...
 ```
  
 ```
