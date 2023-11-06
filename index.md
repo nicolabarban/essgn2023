@@ -1,6 +1,6 @@
-# Lab 2. Getting started with Plink
+#   Getting started with Plink
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/nicolabarban/sociogenomics2023&cloudshell_tutorial=week2/lab2.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/nicolabarban/essgn2023&cloudshell_tutorial=index.md)
 
 ## Installing Plink in your system
 PLINK is a free, open-source software package for genomic data analysis. It was originally designed for analyzing genetic association studies, particularly for case-control studies and family-based studies. PLINK can perform various tasks related to genetic data analysis, including data management, quality control, association analysis, haplotype analysis, and population stratification correction.
@@ -8,10 +8,33 @@ PLINK is a free, open-source software package for genomic data analysis. It was 
 PLINK is widely used in the field of human genetics and has been cited in numerous scientific publications. It is compatible with various file formats commonly used in genetics research, such as VCF, BED, and PED formats. PLINK is available for download on the project's website and is actively maintained by a team of developers.
 
 
-**Let's start from our home directory and change directory to** `Sociogenomics/Software`
+
+### Let's start from our home directory and create this folder structure
+
+ESSGN
+ 
+```
+ ├── ESSGN
+ │   ├── Data
+ │   ├── Software
+ │   ├── Script
+ ...
+```
+ 
+```
+mkdir ESSGN
+cd ESSGN
+mkdir Data
+mkdir Software
+mkdir Script
+
+```
+ 
+### Let's move into the Software directory 
+ 
 ```
 cd $HOME
-cd Sociogenomics/Software
+cd ESSGN/Software
 ```
 
 PLINK is available from [here:](https://www.cog-genomics.org/plink/)
@@ -56,7 +79,7 @@ Symbolic links are often used in Unix-based operating systems, such as Linux or 
 
 
 ```
-cd $HOME/Sociogenomics
+cd $HOME/ESSGN
 ln -s Software/plink
 ```
 
@@ -79,7 +102,7 @@ unzip week2.zip
   rm -r __MACOSX/
   rm -r week2
 
-cd $HOME/Sociogenomics
+cd $HOME/ESSGN
 ```
 
 ## How to read PLINK files
